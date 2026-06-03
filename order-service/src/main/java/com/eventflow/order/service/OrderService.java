@@ -80,6 +80,7 @@ public class OrderService {
         log.info("Order event published to Kafka topic: {}", ORDER_EVENTS_TOPIC);
     
         return savedOrder;
+    }
 
         public Order getOrder(UUID orderId) {
             return orderRepository.findById(orderId)
@@ -90,4 +91,4 @@ public class OrderService {
             return orderRepository.findByCustomerId(customerId);
         }
     }
-}
+

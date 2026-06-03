@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +38,7 @@ public class OrderController {
         return ResponseEntity.status(HttpStatus.CREATED).body(order);
     }
 
-    @GetMapping("/{orderID")
+    @GetMapping("/{orderID}")
     public ResponseEntity<Order> getOrder(@PathVariable UUID orderId) {
         Order order = orderService.getOrder(orderId);
         return ResponseEntity.ok(order);

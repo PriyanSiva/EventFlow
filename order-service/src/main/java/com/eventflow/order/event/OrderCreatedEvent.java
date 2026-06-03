@@ -30,7 +30,7 @@ public class OrderCreatedEvent {
     public static class OrderItem {
         private String productId;
         private int quantity;
-        private BigDecimal price;
+        private BigDecimal unitPrice;
     }
 
 }

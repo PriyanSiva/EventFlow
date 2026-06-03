@@ -1,39 +1,35 @@
 spring:
   application:
     name: order-service
-
-    datasource:
-      url: jdbc:postgresql://localhost:5432/eventflow?currentSchema=orders
-      username: eventflow
-      password: eventflow123
-      driver-class-name: org.postgresql.Driver
-
-    jpa:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/eventflow?currentSchema=orders
+    username: eventflow
+    password: eventflow123
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
       hibernate:
-        ddl-auto: update
-      show-sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
-        hibernate:
-          dialect: org.hibernate.dialect.PostgreSQLDialect
-          format_sql: true
-
-    kafka:
-      bootstrap-servers: localhost:9092
-      producer:
-        key-serializer: org.apache.kafka.common.serialization.StringSerializer
-        value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-        properties:
-          spring.json.add.type.headers: false
-        
-    data:
-      redis:
-        host: localhost
-        port: 6379
+        spring.json.add.type.headers: false
+  data:
+    redis:
+      host: localhost
+      port: 6379
 
 server:
   port: 8081
 
-logging: 
+logging:
   level:
     com.eventflow: DEBUG
     org.springframework.kafka: INFO
